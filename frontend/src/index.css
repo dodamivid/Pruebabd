@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base (suaviza tipografía y colores) */
+@layer base {
+  html, body, #root { height: 100%; }
+  body { @apply bg-neutral-50 text-neutral-900 antialiased; }
+  h1,h2,h3,h4 { @apply font-display text-neutral-900; }
+}
+
+/* Utilitarios listos: botones y tarjetas */
+@layer components {
+  .btn { @apply inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium
+                 shadow-sm transition-all duration-200 ease-out
+                 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed; }
+  .btn-primary { @apply bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-400; }
+  .btn-ghost   { @apply bg-white text-neutral-700 hover:bg-neutral-100 border border-neutral-200; }
+
+  .card       { @apply bg-white rounded-xl shadow-card border border-neutral-100; }
+  .card-header{ @apply px-5 py-4 border-b border-neutral-100 flex items-center justify-between; }
+  .card-body  { @apply p-5; }
+}
+
+/* Paleta mínima Tailwind (si agregaste en tailwind.config.js) */
+/* theme.extend.colors = { primary: { 50:'#eef2ff',100:'#e0e7ff',200:'#c7d2fe',300:'#a5b4fc',400:'#818cf8',500:'#6366f1',600:'#4f46e5',700:'#4338ca',800:'#3730a3',900:'#312e81' } } */
