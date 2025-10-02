@@ -7,17 +7,22 @@ type LayoutProps = {
 };
 
 export default function Layout({ children }: LayoutProps) {
-  const [open, setOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
-    <div className="min-h-screen bg-neutral-50 text-neutral-900">
-      <div className="flex">
-        <Sidebar open={open} onToggle={() => setOpen(!open)} />
-        <div className="flex-1 min-w-0">
-          <Navbar onToggleSidebar={() => setOpen(!open)} />
-          <main className="p-4 sm:p-6 max-w-7xl mx-auto">{children}</main>
+    <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-neutral-100 text-neutral-900">
+      <div className="flex min-h-screen">
+        <Sidebar open={sidebarOpen} onToggle={() => setSidebarOpen((value) => !value)} />
+        <div className="flex min-h-screen flex-1 flex-col">
+          <Navbar onToggleSidebar={() => setSidebarOpen((value) => !value)} />
+          <main className="flex-1 px-5 py-8 md:px-8 lg:px-10">
+            <div className="mx-auto w-full max-w-6xl space-y-6">
+              {children}
+            </div>
+          </main>
         </div>
       </div>
     </div>
   );
 }
+

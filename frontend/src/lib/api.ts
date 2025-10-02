@@ -1,8 +1,16 @@
-import axios from "axios";
+﻿import axios from "axios";
 import type { Producto, LogRow } from "./types";
 
-export const api = axios.create({
+type ApiConfig = {
+  baseURL: string;
+};
+
+const config: ApiConfig = {
   baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000/api",
+};
+
+export const api = axios.create({
+  baseURL: config.baseURL,
   headers: { "Content-Type": "application/json" },
 });
 
@@ -32,8 +40,16 @@ export async function deleteProducto(id: number): Promise<unknown> {
   return data;
 }
 
-// ---------- Bitácora ----------
+// ---------- Bitacora ----------
 export async function getBitacora(): Promise<LogRow[]> {
   const { data } = await api.get<LogRow[]>("/bitacora/reporte");
+  return data;
+}
+
+export async function getReporteProductosRango(params: {
+  ini: string;
+  fin: string;
+}): Promise<Producto[]> {
+  const { data } = await api.get<Producto[]>("/reporte", { params });
   return data;
 }
